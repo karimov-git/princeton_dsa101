@@ -13,9 +13,18 @@ public class BoardTest {
     
     @Before
     public void setUp(){
-        blocks = new int[3][3];
+        // Hamming: 5
+        // Manhattan: 10
+        blocks = new int[][]{
+                {8, 1, 3},
+                {4, 0, 2},
+                {7, 6, 5}};
+                            //
+        board = new Board(blocks);
     }
 
+    /*
+    // TODO: How to test private method?
     @Test
     public void placeNumByRowAndCol() throws Exception {
         int row = 2;
@@ -24,14 +33,15 @@ public class BoardTest {
         Board board = new Board(blocks);
         assertEquals(8, board.getPlaceNum(row, col));
     }
+    */
 
     @Test
-    public void getBlockInPlace() throws Exception {
-        blocks = new int[][]{
-                {1, 0, 3}, // 2
-                {4, 6, 5}, // 1
-                {2, 8, 7}}; // 1; Total: 4
-        board = new Board(blocks);
-        assertEquals(4, board.getBlocksInPlace());
+    public void getHamming() throws Exception {
+        assertEquals(5, board.hamming());
+    }
+
+    @Test
+    public void getManhatten() throws Exception {
+        assertEquals(10, board.manhattan());
     }
 }
